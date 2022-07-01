@@ -14,6 +14,7 @@ class NearEarthObject:
     initialized to an empty collection, but eventually populated in the
     `NEODatabase` constructor.
     """
+
     def __init__(self, **info):
         """Create a new `NearEarthObject`.
 
@@ -43,13 +44,19 @@ class NearEarthObject:
                 potentially hazardous."
 
     def __repr__(self):
-        """Return `repr(self)`, a computer-readable string
-        representation of this object."""
+        """Return `repr(self)`, a computer-readable string.
+
+        representation of this object.
+        """
         return (f"NearEarthObject(designation={self.designation!r},\
                 name={self.name!r}, "
                 f"diameter={self.diameter:.3f}, hazardous={self.hazardous!r})")
 
     def serialize(self):
+        """Return a serialization.
+
+        Returns: String
+        """
         return {'designation': self.designation,
                 'name': self.name,
                 'diameter_km': self.diameter,
@@ -70,6 +77,7 @@ class CloseApproach:
     private attribute, but the referenced NEO is eventually replaced in the
     `NEODatabase` constructor.
     """
+
     def __init__(self, **info):
         """Create a new `CloseApproach`.
 
@@ -88,7 +96,8 @@ class CloseApproach:
 
     @property
     def time_str(self):
-        """Return a formatted representation of this
+        """Return a formatted representation of this.
+
         `CloseApproach`'s approach time.
 
         The value in `self.time` should be a Python `datetime` object. While a
@@ -110,14 +119,20 @@ class CloseApproach:
             au and a velocity of {self.velocity:.2f} km/s."
 
     def __repr__(self):
-        """Return `repr(self)`, a computer-readable string representation
-        of this object."""
+        """Return `repr(self)`, a computer-readable string representation.
+
+        of this object.
+        """
         return (f"CloseApproach(time={self.time_str!r},\
                 distance={self.distance:.2f},"
                 f"velocity={self.velocity:.2f},\
                 neo={self.neo!r})")
 
     def serialize(self):
+        """Return a serialization.
+
+        Returns: String
+        """
         return {'datetime_utc': self.time_str,
                 'distance_au': self.distance,
                 'velocity_km_s': self.velocity,

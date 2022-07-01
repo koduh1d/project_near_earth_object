@@ -7,7 +7,9 @@ class UnsupportedCriterionError(NotImplementedError):
 
 
 class AttributeFilter:
-    """A general superclass for filters on comparable attributes.
+    """A general superclass for filters on.
+
+    comparable attributes.
 
     An `AttributeFilter` represents the search criteria pattern comparing some
     attribute of a close approach (or its attached NEO) to a
@@ -22,9 +24,11 @@ class AttributeFilter:
     Concrete subclasses can override the `get` classmethod to provide custom
     behavior to fetch a desired attribute from the given `CloseApproach`.
     """
+
     def __init__(self, op, value):
-        """Construct a new `AttributeFilter` from an binary predicate and a
-        reference value.
+        """Construct a new `AttributeFilter` from an binary.
+
+        predicate and a reference value.
 
         The reference value will be supplied as the second (right-hand side)
         argument to the operator function. For example, an `AttributeFilter`
@@ -55,6 +59,10 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
+        """Return a string representation of itself.
+
+        :return String representation
+        """
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__},\
             value={self.value})"
 
