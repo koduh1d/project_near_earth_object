@@ -14,7 +14,6 @@ You'll edit this file in Task 2.
 """
 import csv
 import json
-import math
 
 from models import NearEarthObject, CloseApproach
 

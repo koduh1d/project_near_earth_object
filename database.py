@@ -12,6 +12,9 @@ data on NEOs and close approaches extracted by `extract.load_neos` and
 You'll edit this file in Tasks 2 and 3.
 """
 
+import math
+
+
 class NEODatabase:
     """A database of near-Earth objects and their close approaches.
 
@@ -120,17 +123,31 @@ class NEODatabase:
                 invalid = False
                 if len(filters) != 0:
                     for k, v in filters.items():
-                        if k == 'date' and a.time.date() != v or \
-                            k == 'start_date' and a.time.date() < v or \
-                            k == 'end_date' and a.time.date() > v or \
-                            k == 'distance_min' and a.distance < v or \
-                            k == 'distance_max' and a.distance > v or \
-                            k == 'velocity_min' and a.velocity < v or \
-                            k == 'velocity_max' and a.velocity > v or \
-                            k == 'diameter_min' and a.neo.diameter < v or \
-                            k == 'diameter_max' and a.neo.diameter > v or \
-                            k == 'hazardous' and a.neo.hazardous != v:
-                                invalid = True
-                                break
+                        if k == 'date' and a.time.date() != v:
+                            invalid = True
+                        elif  k == 'start_date' and a.time.date() < v:
+                            invalid = True
+                        elif  k == 'end_date' and a.time.date() > v:
+                            invalid = True
+                        elif  k == 'distance_min' and a.distance < v:
+                            invalid = True
+                        elif  k == 'distance_max' and a.distance > v:
+                            invalid = True
+                        elif  k == 'velocity_min' and a.velocity < v:
+                            invalid = True
+                        elif  k == 'velocity_max' and a.velocity > v:
+                            invalid = True
+                        elif k in ('diameter_min', 'diameter_max') and math.isnan(a.neo.diameter):
+                            invalid = True
+                        elif  k == 'diameter_min' and a.neo.diameter < v:
+                            invalid = True
+                        elif  k == 'diameter_max' and a.neo.diameter > v:
+                            invalid = True
+                        elif  k == 'hazardous' and a.neo.hazardous != v:
+                            invalid = True
+                            
+                        if invalid:
+                            break
+                
                 if not invalid:
                     yield a

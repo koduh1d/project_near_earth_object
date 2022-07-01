@@ -1,3 +1,1 @@
-ls = [None]
-
-print(ls)
+print(float('nan') is  float('nan'))

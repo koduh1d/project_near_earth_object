@@ -46,7 +46,7 @@ class NearEarthObject:
         # and a missing diameter being represented by `float('nan')`.
         self.designation = '' if 'designation' not in info else str(info['designation'])
         self.name = None if 'name' not in info or info['name'] == '' else str(info['name'])
-        self.diameter = float('nan') if 'diameter' not in info or info['diameter'] == '' else float(info['diameter'])
+        self.diameter = float('nan') if ('diameter' not in info or info['diameter'] == '') else float(info['diameter'])
         self.hazardous = False if 'hazardous' not in info else bool(info['hazardous'])
 
         # Create an empty initial collection of linked approaches.
